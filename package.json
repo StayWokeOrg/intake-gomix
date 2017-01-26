@@ -1,0 +1,27 @@
+{
+  "name": "firebase-database-quickstart",
+  "version": "1.0.0",
+  "description": "Firebase Node.js Database Quickstart Sample",
+  "main": "index.js",
+  "author": "nivco@google.com",
+  "license": "Apache License Version 2.0",
+  "dependencies": {
+    "firebase": "^3.0.0",
+    "promise": "^7.1.1",
+    "express": "*"
+  },
+	"scripts": {
+		"start": "node index.js"
+	},
+	"engines": {
+		"node": "4.4.5"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/firebase/quickstart-nodejs"
+	},
+	"keywords": [
+		"node",
+		"firebase"
+	]
+}
