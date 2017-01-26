@@ -18,7 +18,6 @@ firebase.initializeApp({
 });
 // [END initialize]
 
-// Set our simple Express server to serve up our front-end files
 app.use(express.static('public'));
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/public/index.html');

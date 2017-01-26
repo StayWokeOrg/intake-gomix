@@ -1,10 +1,9 @@
 {
-  "name": "firebase-database-quickstart",
+  "name": "staywoke-intake-gomix",
   "version": "1.0.0",
-  "description": "Firebase Node.js Database Quickstart Sample",
+  "description": "#StayWoke Gomix",
   "main": "index.js",
-  "author": "nivco@google.com",
-  "license": "Apache License Version 2.0",
+  "author": "matt@mattstauffer.co",
   "dependencies": {
     "firebase": "^3.0.0",
     "promise": "^7.1.1",
@@ -18,10 +17,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/firebase/quickstart-nodejs"
-	},
-	"keywords": [
-		"node",
-		"firebase"
-	]
+		"url": "https://github.com/staywokeorg/intake-gomix"
+	}
 }

@@ -18,6 +18,3 @@ The important parts of the code are mainly split between two files. Both are wel
 *   `public/scripts/main.js` uses the [Firebase JavaScript API](https://www.firebase.com/docs/web/api/) for creating posts, stars, and comments as well as handling user-input.
 
 If you now go to your app you should be able to login with Google Auth, then create posts with messages, and add comments. When you star a post you should also receive a notification email too. 
-
-## Getting Help
-You can see other example projects on our [Community Projects](https://gomix.com/community/) page. And if you get stuck, let us know on the [forum](http://support.gomix.com/) and we can help you out.

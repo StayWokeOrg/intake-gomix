@@ -1,138 +1,215 @@
-<!doctype html>
-<!--
-  Copyright 2016 Google Inc. All rights reserved.
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      https://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Stuff about intake">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>#StayWoke Intake</title>
+<!DOCTYPE html>
+<html>
 
-  <!-- Disable tap highlight on IE -->
-  <meta name="msapplication-tap-highlight" content="no">
-
-  <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="#StayWoke Intake">
-  <meta name="theme-color" content="#303F9F">
-
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="#StayWoke Intake">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#303F9F">
-
-  <!-- Tile icon for Win8 -->
-  <meta name="msapplication-TileColor" content="#3372DF">
-  <meta name="msapplication-navbutton-color" content="#303F9F">
-
-  <!-- Material Design Lite -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-orange.min.css">
-  <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-
-  <link rel="stylesheet" href="main.css">
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDk9kYWpqUoryYYtXYqVYvW96Q_5x0g0uo",
-      authDomain: "central-813fd.firebaseapp.com",
-      databaseURL: "https://central-813fd.firebaseio.com",
-      storageBucket: "central-813fd.appspot.com",
-      messagingSenderId: "27517265268"
-    };
-    firebase.initializeApp(config);
-  </script>
-
-</head>
-<body>
-<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-
-  <!-- Splash screen -->
-  <section id="page-splash" style="display: none">
-    <h3 class="logo">#StayWoke Intake</h3>
-    <h4 class="logo">Intake and stuff</h4>
-    <h4></h4>
-    <div>
-      <button id="sign-in-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign in with Google</button>
-    </div>
-  </section>
-
-  <!-- Header section containing logo and menu -->
-  <header class="header mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
-
-    <div class="mdl-layout__header-row titlebar">
-      <h3 class="logo">#StayWoke Intake</h3>
-      <!--
-      <button id="sign-out-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign out</button>
-      -->
-    </div>
-
-    <!-- Navigation Bar -->
-    <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
-      <div class="mdl-tab">
-        <!--
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect" id="add">
-          <i class="material-icons">mode_edit</i>
-        </button>
-  -->
+  <head>
+    <meta charset="utf-8">
+    <title>#StayWoke - Get Involved</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i,900" rel="stylesheet">
+    <script id="campaign-text-info-template" type="text/x-handlebars-template">
+      <h3 class="text-center balance-text">Text “{{sms_keyword}}” to <span class="text-nowrap">{{number}}</span> <span class="text-nowrap">or join below.</span></h3>
+    </script>
+    <script id="campaign-description-template" type="text/x-handlebars-template">
+      <p>{{description}}</p>
+    </script>
+    <script id="campaign-name-template" type="text/x-handlebars-template">
+      <h3 class="balance-text">The {{name}} Campaign</h3>
+    </script>
+    <script id="checkbox-template" type="text/x-handlebars-template">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name={{name}} value={{value}}> {{ label }}
+        </label>
       </div>
-    </div>
-  </header>
+    </script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" type="image/x-icon" href="https://cdn.gomix.com/78cb5502-2de8-4423-8452-09ab85477f0c%2Ffavicon.ico">
 
-  <main class="mdl-layout__content mdl-color--grey-100">
 
-    <!-- Show the add contact form -->
-    <section class="mdl-grid content" id="signup-form">
-      <div class="mdl-cell mdl-cell--12-col mdl-grid">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDk9kYWpqUoryYYtXYqVYvW96Q_5x0g0uo",
+        authDomain: "central-813fd.firebaseapp.com",
+        databaseURL: "https://central-813fd.firebaseio.com",
+        storageBucket: "central-813fd.appspot.com",
+        messagingSenderId: "27517265268"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </head>
 
-          <!-- Card containing the inputs to add a new contact -->
-          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
-                  mdl-cell--6-col-desktop">
-            <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-              <h2 class="mdl-card__title-text">Sign Up</h2>
+  <body>
+    <div class="pages">
+      <div class="page page1 pledge-page">
+        <header>
+          <div class="text-center">
+            <img src="https://cdn.gomix.com/78cb5502-2de8-4423-8452-09ab85477f0c%2Fstay-woke-logo-white.png" alt="#StayWoke" class="logo">
+          </div>
+        </header>
+        <section class="shadowed">
+          <h1 class="text-center">Pledge to RESIST.</h1>
+          <div class="campaign-text-info"></div>
+        </section>
+        <section class="scroll-to-form text-center">
+            <p>
+              <a href="#intakeform" class="scroll-button btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+                <span>Join Now</span>
+              </a>
+            </p>
+        </section>
+      </div>
+
+      <div class="page page2 form-page" id="signup-section">
+        <a name="intakeform" id="intakeform"></a>
+        <section>
+          <div class="campaign-description"></div>
+        </section>
+        <section class="intake">
+          <div class="campaign-name"></div>
+          <form action="submit" method="post" id="signup-form">
+            <input type="hidden" name="campaign" id="campaign">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input class="form-control input-lg" type="text" name="name" id="name" required>
+              <span class="label label-danger hidden">Please include your name</span>
             </div>
-            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-              <form id="contact-form" action="#">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="new-contact-name">
-                  <label class="mdl-textfield__label" for="new-contact-name">Contact name...</label>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="new-contact-email">
-                  <label class="mdl-textfield__label" for="new-contact-email">Contact email...</label>
-                </div>
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                  Sign Up
-                </button>
-              </form>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input class="form-control input-lg" type="email" name="email" id="email" required>
+              <span class="label label-danger hidden">Please include a valid email address</span>
             </div>
-        </div>
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input class="form-control input-lg" type="phone" name="phone" id="phone">
+            </div>
+            <div class="form-group">
+              <label for="zip">Zip code</label>
+              <input class="form-control input-lg" type="text" name="zip" id="zip" required pattern="[0-9]{5}" title="Five-digit U.S. zip code">
+              <span class="label label-danger hidden">Please include your 5-digit zip code</span>
+            </div>
+            <div class="form-group">
+              <label>Are there particular issues that interest you?</label>
+              <div class="issue-checkboxes"></div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <span>Get Involved</span>
+                <span class="glyphicon glyphicon-chevron-right"></span></button>
+            </div>
+          </form>
+        </section>
       </div>
-    </section>
-
-    <section class="mdl-grid content" id="thank-you">
-      <div class="mdl-cell mdl-cell--12-col mdl-grid">
-        Thanks for signing up!
+      
+      <div class="page success-page" id="thank-you">
+        <section>
+          <div class="container">
+            <div class="row">
+              <h1 class="text-center balance-text thank-you-header">Thank you for taking action!</h1>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
-  </main>
-</div>
 
-<script src="scripts/main.js"></script>
-</body>
+      <div class="page page3 who-what-why-page">
+        <section class="shadowed">
+          <div class="container">
+            <div class="row">
+              <div class="col col-sm-4">
+                <h3 class="balance-text">What we are doing</h3>
+                <p>Together, we pledge to combine the energy and passion we create at protests and rallies to form an unrelenting force for social justice.</p>
+              </div>
+              <div class="col col-sm-4">
+                <h3 class="balance-text">Why you should sign up</h3>
+                <p>By joining this campaign, you commit to remaining engaged in using your voice and power to stand up for what is right.</p>
+              </div>
+              <div class="col col-sm-4">
+                <h3 class="balance-text">What happens next</h3>
+                <p>We will contact with you concrete actions to take, and ways to stay involved at both a local and national level.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="scroll-to-form text-center">
+            <p>
+              <a href="#intakeform" class="scroll-button btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+                <span>Join Now</span>
+              </a>
+            </p>
+        </section>
+      </div>
+
+      <footer>
+        <p>
+          <a href="http://staywoke.org/">#StayWoke</a> |
+          <a href="https://www.joincampaignzero.org/">CampaignZero</a> |
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </p>
+      </footer>
+    </div>
+  
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js" integrity="sha256-1O3BtOwnPyyRzOszK6P+gqaRoXHV6JXj8HkjZmPYhCI=" crossorigin="anonymous"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/intake.js"></script>
+    <script src="./scripts/issues.js"></script>
+    <script>
+      // set the campaign once
+      var campaign = inauguration
+
+      // set the campaign in the form input
+      $('input#campaign').val(campaign.id)
+
+      var textView = new CampaignView({
+        templateId: '#campaign-text-info-template',
+        data: campaign
+      })
+      textView.renderTo('.campaign-text-info')
+
+      var descriptionView = new CampaignView({
+        templateId: '#campaign-description-template',
+        data: campaign
+      })
+      descriptionView.renderTo('.campaign-description')
+
+      var nameView = new CampaignView({
+        templateId: '#campaign-name-template',
+        data: campaign
+      })
+      nameView.renderTo('.campaign-name')
+
+      issues.forEach(function(issue) {
+        var issueView = new CampaignView({
+          templateId: '#checkbox-template',
+          data: {
+            name: 'topics',
+            value: issue.id,
+            label: issue.description,
+          },
+        })
+        issueView.appendTo('.issue-checkboxes')
+      })
+
+    </script>
+    <script src="./scripts/form-validation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/balance-text/2.0.0/jquery.balancetext.min.js" integrity="sha256-dawSXzOu4BcrV9VEytfVY0XUcZMrrfjvkKWg75FYPrA=" crossorigin="anonymous"></script>
+
+
+    <!--script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-90633345-1', 'auto');
+      ga('send', 'pageview');
+    </script-->
+  </body>
+
 </html>
