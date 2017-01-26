@@ -1,29 +1,75 @@
 'use strict';
 
-var firebase = require('firebase');
-var Promise = require('promise');
-var express = require('express');
-var app = express();
-var serverStartTime = Math.floor(new Date() / 1);
+const firebase = require('firebase')
+const Promise = require('promise')
+const express = require('express')
+const logger = require('morgan')
+const bodyParser = require('body-parser')
+const expressValidator = require('express-validator')
+const app = express()
 
-// [START initialize]
-// Initialize the app with a service account, granting admin privileges
-firebase.initializeApp({
-  databaseURL: 'https://'+process.env.PROJECT_ID+'.firebaseio.com',
-  serviceAccount: {
-    projectId: process.env.PROJECT_ID,
-    clientEmail: process.env.CLIENT_EMAIL,
-    privateKey: process.env.PRIVATE_KEY
-  }
-});
-// [END initialize]
+const serverStartTime = Math.floor(new Date() / 1)
 
-app.use(express.static('public'));
-app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/public/index.html');
-});
+/*
+
+These settings are from the original intake index.js. We'll need to parse through and figure out which we want to use.
+
+
+app.set('view engine', 'html')
+app.set('port', process.env.PORT)
+
+// production middleware
+if (app.get('env') === 'production') {
+  // redirect http requests to https
+  // use trustProtoHeader: true when behind load balancer/reverse proxy
+  app.use(enforce.HTTPS({ trustProtoHeader: true }))
+  app.set('trust proxy', 1)
+
+  // production error handler
+  app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.sendStatus(err.status || 500)
+  })
+}
+
+app.use(helmet())
+app.use(cookieSession({
+  name: 'session',
+  secret: process.env.SESSION_SECRET,
+  maxAge: 24 * 60 * 60 * 1000,
+  overwrite: true,
+  signed: false,
+  httpOnly: false,
+}))
+
+app.use(compression())
+app.use(methodOverride('_method'))
+
+*/
+
+// Are we actually using these?
+app.use(expressValidator())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// We are actually using these
+app.use(logger('combined'))
+
+app.use(express.static('public'))
+app.get('/', (request, response) => {
+  response.sendFile(__dirname + '/public/index.html')
+})
+
+const sms = require('./controller/sms/sms')
+const web = require('./controller/web')
+
+// SMS route
+app.post('/sms', sms.dispatcher)
+
+// web app routes
+app.post('/submit', web.submit)
 
 // Listen for HTTP requests
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+var listener = app.listen(process.env.PORT, () => {
+  console.log('Your app is listening on port ' + listener.address().port)
+})
