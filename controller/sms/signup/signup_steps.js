@@ -163,6 +163,8 @@ const steps = {
       // we have all the info we need
       // save the user
       debug('saving user', req.session.user)
+      console.log('saving user')
+      console.log(req.session.user)
 
       saveUser({
         user: req.session.user,

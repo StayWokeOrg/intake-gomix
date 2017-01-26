@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "#StayWoke Gomix",
   "main": "index.js",
-  "author": "matt@mattstauffer.co",
+  "author": "pascal@whateveremail.com",
+  "contributors": [
+    "mattstauffer@whatevermail.com",
+    "megan@whatevermail.com",
+    "doug@whatevermail.com"
+  ],
+  "license": "MIT",
   "dependencies": {
     "firebase": "^3.0.0",
     "promise": "^7.1.1",
@@ -12,7 +18,8 @@
     "debug": "^2.6.0",
     "morgan": "^1.7.0",
     "express-validator": "^2.20.4",
-    "body-parser": "^1.15.1"
+    "body-parser": "^1.15.1",
+    "cookie-session": "2.0.0-alpha.2"
   },
 	"scripts": {
 		"start": "node index.js"

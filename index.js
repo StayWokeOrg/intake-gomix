@@ -6,6 +6,7 @@ const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
+const cookieSession = require('cookie-session')
 const app = express()
 
 const serverStartTime = Math.floor(new Date() / 1)
@@ -33,14 +34,7 @@ if (app.get('env') === 'production') {
 }
 
 app.use(helmet())
-app.use(cookieSession({
-  name: 'session',
-  secret: process.env.SESSION_SECRET,
-  maxAge: 24 * 60 * 60 * 1000,
-  overwrite: true,
-  signed: false,
-  httpOnly: false,
-}))
+
 
 app.use(compression())
 app.use(methodOverride('_method'))
@@ -54,6 +48,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // We are actually using these
 app.use(logger('combined'))
+
+app.use(cookieSession({
+  name: 'session',
+  secret: process.env.SESSION_SECRET,
+  maxAge: 24 * 60 * 60 * 1000,
+  overwrite: true,
+  signed: false,
+  httpOnly: false,
+}))
 
 app.use(express.static('public'))
 app.get('/', (request, response) => {

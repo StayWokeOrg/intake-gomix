@@ -49,8 +49,9 @@ module.exports = function saveUser({ user, source }) {
       topics: userData.topics,
       campaign: userData.campaign,
       source: userData.source
-    });
+    }).then(resolve, reject);
 
+    // @todo
     if (userData.zip && 1 == 2) {
       // post public info to firebase
       const firstname = userData.name.split(' ')[0]
