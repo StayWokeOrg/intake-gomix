@@ -172,8 +172,10 @@ const steps = {
       })
       .then((data) => {
         debug('save succeeded', data)
+        console.log('succeeded', data)
       }, (reason) => {
         debug('error', reason)
+        console.log('error', reason)
       })
 
       // don't need to wait for save to complete to proceed

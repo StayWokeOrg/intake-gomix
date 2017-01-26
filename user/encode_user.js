@@ -12,18 +12,13 @@ module.exports = function encodeUser({ user, campaign, source }) {
   // build data object for POST to central
   const data = {
     name: user.name,
-    email: user.email || null, // optional
-    phone: user.phone || null, // optional
-    zip: user.zip || null, // optional
+    email: user.email || null,
+    phone: user.phone || null,
+    zip: user.zip || null,
     topics: user.topics || [],
     campaign,
     source,
   }
-
-  // remove null/undefined/empty string
-  // Object.keys(data).forEach((key) => {
-  //   if (!data[key]) delete data[key]
-  // })
 
   return data
 }
