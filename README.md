@@ -1,23 +1,16 @@
-# Intake on GoMix
-
-Forked from this:
-https://firebase-quickstart.gomix.me/
-
-and this:
-
-https://github.com/staywokeorg/intake
-
-## Todo before this integration is done
-- [ ] Fix Firebase contacts on map thing
-- [ ] Take a look at failing tests and update for Firebase's different input requirements
-- [ ] Put it on a real subdomain
-
-
-Original README:
-
 # StayWoke intake application
 
 The goal: to capture the contact information for as many people who are attending a protest as possible, for the purpose of getting them to be more connected and involved in future actions.
+
+## Status
+
+In the middle of porting from https://github.com/staywokeorg/intake.
+Inspired by https://firebase-quickstart.gomix.me/, which we should refer to in the future for adding social auth.
+
+### Todo before this integration is done
+- [ ] Fix Firebase contacts on map thing
+- [ ] Take a look at failing tests and update for Firebase's different input requirements
+- [ ] Put it on a real subdomain
 
 ## Getting started
 
