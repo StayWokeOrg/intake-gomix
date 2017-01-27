@@ -1,6 +1,5 @@
 'use strict';
 
-/* @todo: Only run these two lines if local, not if on GoMix */
 /* eslint-disable no-console */
 const dotenv = require('dotenv')
 
@@ -20,11 +19,9 @@ const app = express()
 const serverStartTime = Math.floor(new Date() / 1)
 
 /*
-
 These settings are from the original intake index.js. We'll need to parse through and figure out which we want to use.
 
-app.set('view engine', 'html')
-app.set('port', process.env.PORT)
+
 
 // production middleware
 if (app.get('env') === 'production') {
@@ -44,15 +41,16 @@ app.use(helmet())
 
 app.use(compression())
 app.use(methodOverride('_method'))
-
 */
 
 // Are we actually using these?
 app.use(expressValidator())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.set('port', process.env.PORT)
+app.set('view engine', 'html')
 
-// We are actually using these
+// We are actually using these:
 app.use(logger('combined'))
 
 app.use(cookieSession({
