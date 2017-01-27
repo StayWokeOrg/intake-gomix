@@ -1,5 +1,13 @@
 'use strict';
 
+/* @todo: Only run these two lines if local, not if on GoMix */
+/* eslint-disable no-console */
+const dotenv = require('dotenv')
+
+// Load environment variables from .env file
+// need to do this before initializing other modules (e.g. debug)
+dotenv.load()
+
 const firebase = require('firebase')
 const Promise = require('promise')
 const express = require('express')

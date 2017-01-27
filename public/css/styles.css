@@ -3795,13 +3795,13 @@ a.label:focus {
   position: fixed;
 }
 /* ------------------------
-	Custom Variables
+    Custom Variables
 --------------------------*/
 .nav-pills a:hover {
   color: #222;
 }
 /* ------------------------
-	Generic Styles
+    Generic Styles
 --------------------------*/
 html {
   font-size: 16px;
@@ -3905,7 +3905,7 @@ section.shadowed {
   word-wrap: break-word;
 }
 /* ------------------------
-	Header
+    Header
 --------------------------*/
 header {
   padding-top: 0;
@@ -3922,7 +3922,7 @@ header {
   margin: auto;
 }
 /* ------------------------
-	Section: Form
+    Section: Form
 --------------------------*/
 .page2 {
   max-width: 40rem;
@@ -3941,7 +3941,7 @@ header {
   width: 100%;
 }
 /* ------------------------
-	Panels
+    Panels
 --------------------------*/
 .panel-heading a {
   color: #222;
@@ -3960,7 +3960,7 @@ header {
   margin: auto;
 }
 /* ------------------------
-	Success Page
+    Success Page
 --------------------------*/
 .thank-you-header {
   background-color: #db2b39;
@@ -3972,7 +3972,7 @@ header {
   margin-top: 5rem;
 }
 /* ------------------------
-	Footer
+    Footer
 --------------------------*/
 footer {
   box-shadow: 0 0 50px 50px rgba(0, 0, 0, 0.2);
@@ -3980,7 +3980,7 @@ footer {
   text-align: center;
 }
 /*-------------------------
-	Mobile
+    Mobile
 ---------------------------*/
 @media only screen and (max-width: 640px) {
   .col + .col {

@@ -1,0 +1,23 @@
+# express http port
+
+PORT=3030
+
+# environment
+
+NODE_ENV=development
+
+# secret key used to secure the session. for local development, you don't need
+# to modify this. see also: https://www.npmjs.com/package/express-session#secret
+
+SESSION_SECRET=some_secret
+
+# debug logging for various parts of the app. add or remove keys from this list
+# to show/hide different logs in your express console
+
+DEBUG=app,user,sms
+
+# Public-friendly Firebase info that we're going to make private anyway
+
+FIREBASE_PROJECT_ID=
+FIREBASE_API_KEY=
+FIREBASE_MESSAGING_SENDER_ID=

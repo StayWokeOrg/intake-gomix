@@ -1,3 +1,5 @@
 .subversion
 .bash_history
 .viminfo
+.env
+node_modules/*
