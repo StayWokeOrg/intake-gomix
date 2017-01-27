@@ -1,5 +1,3 @@
-'use strict';
-
 /* eslint-disable no-console */
 const dotenv = require('dotenv')
 
@@ -7,21 +5,17 @@ const dotenv = require('dotenv')
 // need to do this before initializing other modules (e.g. debug)
 dotenv.load()
 
-const firebase = require('firebase')
-const Promise = require('promise')
 const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
 const cookieSession = require('cookie-session')
+
 const app = express()
 
-const serverStartTime = Math.floor(new Date() / 1)
-
 /*
-These settings are from the original intake index.js. We'll need to parse through and figure out which we want to use.
-
-
+These settings are from the original intake index.js.
+We'll need to parse through and figure out which we want to use.
 
 // production middleware
 if (app.get('env') === 'production') {
@@ -64,7 +58,7 @@ app.use(cookieSession({
 
 app.use(express.static('public'))
 app.get('/', (request, response) => {
-  response.sendFile(__dirname + '/public/index.html')
+  response.sendFile(`${__dirname}/public/index.html`)
 })
 
 const sms = require('./controller/sms/sms')
@@ -77,6 +71,6 @@ app.post('/sms', sms.dispatcher)
 app.post('/submit', web.submit)
 
 // Listen for HTTP requests
-var listener = app.listen(process.env.PORT, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
+const listener = app.listen(process.env.PORT, () => {
+  console.log(`Your app is listening on port ${listener.address().port}`)
 })

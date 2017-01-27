@@ -10,7 +10,7 @@ const debug = require('debug')('user') // eslint-disable-line
  */
 module.exports = function encodeUser({ user, campaign, source }) {
   // make sure empty and single still are arrays
-  topics = user.topics || []
+  let topics = user.topics || []
   topics = (topics.constructor === Array) ? topics : [topics]
 
   // build data object for POST to central
