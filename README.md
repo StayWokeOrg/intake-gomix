@@ -9,7 +9,6 @@ Inspired by https://firebase-quickstart.gomix.me/, which we should refer to in t
 
 ### Todo before this integration is done
 - [ ] Fix Firebase contacts on map thing
-- [ ] Take a look at failing tests and update for Firebase's different input requirements
 - [ ] Put it on a real subdomain
 
 ## Getting started
