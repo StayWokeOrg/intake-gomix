@@ -3,8 +3,8 @@ const chai = require('chai')
 const expect = chai.expect // eslint-disable-line
 const should = chai.should() // eslint-disable-line
 
-const validateCampaign = require('../../user/validate_campaign')
-const validCampaigns = require('../../user/valid_campaigns')
+const validateCampaign = require('../../src/user/validate_campaign')
+const validCampaigns = require('../../src/user/valid_campaigns')
 
 describe('user/validate_campaign:', () => {
   describe('#validateCampaign()', () => {

@@ -14,7 +14,7 @@
     "url": "https://github.com/stayworkorg/intake/issues"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "test": "NODE_ENV=test mocha --recursive test/",
     "test:watch": "NODE_ENV=test DEBUG=test chokidar '**/*.js' --initial --ignore node_modules -c 'mocha --recursive test/'",
     "build": "grunt",

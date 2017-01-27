@@ -3,7 +3,7 @@ const expect = chai.expect // eslint-disable-line
 const should = chai.should() // eslint-disable-line
 const debug = require('debug')('test') // eslint-disable-line
 
-const encodeUser = require('../../user/encode_user')
+const encodeUser = require('../../src/user/encode_user')
 
 describe('user/encode_user:', () => {
   describe('#encodeUser()', () => {

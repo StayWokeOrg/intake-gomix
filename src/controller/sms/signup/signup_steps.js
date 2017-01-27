@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 const message = require('../message')
 const saveUser = require('../../../user/save_user')
-const issues = require('../../../public/scripts/issues').issues
+const issues = require('../../../../public/scripts/issues').issues
 const debug = require('debug')('sms')
 
 function notStarted(req, step) {
