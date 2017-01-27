@@ -30,5 +30,5 @@ module.exports = function config(grunt) {
   grunt.registerTask('build', ['clean', 'less'])
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'build'])
+  grunt.registerTask('default', ['build'])
 }
