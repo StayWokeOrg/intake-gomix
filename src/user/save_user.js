@@ -40,7 +40,7 @@ module.exports = function saveUser({ user, source }) {
     // post private info to firebase
     const newContactKey = firebasedb.ref().child('contacts').push().key
 
-    return firebasedb.ref(`contacts/${newContactKey}`).set({
+    firebasedb.ref(`contacts/${newContactKey}`).set({
       name: userData.name,
       email: userData.email,
       phone: userData.phone,
@@ -50,13 +50,12 @@ module.exports = function saveUser({ user, source }) {
       source: userData.source,
     }).then(resolve, reject)
 
-    // @todo
-    /* @todo
-    if (userData.zip && 1 === 2) {
+    if (userData.zip) {
       // post public info to firebase
       const firstname = userData.name.split(' ')[0]
       const newUser = firebasedb.ref(`publicInfo/${userData.campaign}`).push()
-      return firebasedb.ref(`/publicInfo/zips/${userData.zip.toString()}`)
+
+      return firebasedb.ref(`publicInfo/zips/${userData.zip.toString()}`)
         .once('value').then((snapshot) => {
           debug('sending to firebase:', firstname)
           newUser.set({
@@ -67,6 +66,5 @@ module.exports = function saveUser({ user, source }) {
           })
         })
     }
-    */
   })
 }
