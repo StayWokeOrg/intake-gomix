@@ -15,11 +15,11 @@ https://github.com/staywokeorg/intake
 - [x] Move the build scripts over so we can rely on grunt/etc.
 - [x] Make sure it's easy (and documented) to get this version running locally
 - [x] Bring over tests and Travis config
+- [x] Move the docs over
 
 - [ ] Even if there's only a single topic selected, make it an array for consistency
 
 - [ ] Put it on a real subdomain
-- [ ] Move the docs over
 - [ ] Fix Firebase contacts on map thing
 - [ ] Consider additionally indexing contacts by zip for easy lookup
 - [ ] Take a look at failing tests and update for Firebase's different input requirements

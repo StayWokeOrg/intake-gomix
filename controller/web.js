@@ -14,7 +14,6 @@ function submit(req, res) {
     res.redirect('/success.html')
   }, (reason) => {
     debug(reason)
-    console.log(reason)
     res.redirect('/error.html')
   })
 }
