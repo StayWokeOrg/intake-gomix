@@ -35,12 +35,14 @@ module.exports = function saveUser({ user, source }) {
       campaign,
       source,
     })
-    
+
+    debug(userData)
+
     // post private info to firebase
     const newContactKey = firebasedb.ref().child('contacts').push().key
 
     console.log(userData)
-    
+
     return firebasedb.ref('contacts/' + newContactKey).set({
       name: userData.name,
       email: userData.email,

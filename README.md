@@ -17,8 +17,7 @@ https://github.com/staywokeorg/intake
 - [x] Bring over tests and Travis config
 - [x] Move the docs over
 - [x] Figure out why debug isn't logging to console
-
-- [ ] Even if there's only a single topic selected, make it an array for consistency
+- [x] Even if there's only a single topic selected, make it an array for consistency
 
 - [ ] Put it on a real subdomain
 - [ ] Fix Firebase contacts on map thing
