@@ -1,8 +1,10 @@
 const validateUser = require('./validate_user')
 const validateCampaign = require('./validate_campaign')
 const encodeUser = require('./encode_user')
+const zipToLatLong = require('../zip_to_lat_long')
 const debug = require('debug')('user') // eslint-disable-line
 const firebase = require('firebase')
+const Promise = require('promise')
 
 // Initialize Firebase
 firebase.initializeApp({
@@ -48,23 +50,39 @@ module.exports = function saveUser({ user, source }) {
       topics: userData.topics,
       campaign: userData.campaign,
       source: userData.source,
-    }).then(resolve, reject)
+    }).then(() => {
+      if (! userData.zip) {
+        resolve()
+      }
 
-    if (userData.zip) {
-      // post public info to firebase
-      const firstname = userData.name.split(' ')[0]
-      const newUser = firebasedb.ref(`publicInfo/${userData.campaign}`).push()
+      zipToLatLong(userData.zip).then((latLong) => {
+        const firstname = userData.name.split(' ')[0]
+        const newPublicContact = firebasedb.ref(`publicInfo/${userData.campaign}`).push()
 
-      return firebasedb.ref(`publicInfo/zips/${userData.zip.toString()}`)
-        .once('value').then((snapshot) => {
-          debug('sending to firebase:', firstname)
-          newUser.set({
-            name: firstname,
-            zip: userData.zip,
-            lat: snapshot.val().LAT,
-            long: snapshot.val().LNG,
-          })
+        debug('sending to firebase:', firstname)
+        newPublicContact.set({
+          name: firstname,
+          zip: userData.zip,
+          lat: latLong.val().LAT,
+          long: latLong.val().LNG,
         })
-    }
+      }, (that) => {
+        // todo handle error
+      })
+
+      // const firstname = userData.name.split(' ')[0]
+      // const newPublicContact = firebasedb.ref(`publicInfo/${userData.campaign}`).push()
+
+      // return firebasedb.ref(`publicInfo/zips/${userData.zip.toString()}`)
+      //   .once('value').then((snapshot) => {
+      //     debug('sending to firebase:', firstname)
+      //     newPublicContact.set({
+      //       name: firstname,
+      //       zip: userData.zip,
+      //       lat: snapshot.val().LAT,
+      //       long: snapshot.val().LNG,
+      //     })
+      //   })
+    })
   })
 }
