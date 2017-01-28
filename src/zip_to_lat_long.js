@@ -12,7 +12,6 @@ const app = firebase.initializeApp({
 }, 'zip-to-lat-long')
 
 const firebasedb = firebase.database(app)
-
 /**
  * zipToLatLong - get a latitude and longitude given a zip code
  *
@@ -23,8 +22,11 @@ module.exports = function zipToLatLong(zip) {
   return new Promise((resolve, reject) => {
     firebasedb.ref(`zips/${zip}`)
       .once('value')
-      .then(resolve, reject)
-
-    return 'abc'
+      .then((snapshot) => {
+        resolve(snapshot.val())
+      }, (error) => {
+        // todo
+        reject()
+      })
   })
 }

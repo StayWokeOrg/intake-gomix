@@ -42,6 +42,8 @@ module.exports = function saveUser({ user, source }) {
     // post private info to firebase
     const newContactKey = firebasedb.ref().child('contacts').push().key
 
+    // todo feels like this is not how promises are supposed to work;
+    //      am I wrong? - matt
     firebasedb.ref(`contacts/${newContactKey}`).set({
       name: userData.name,
       email: userData.email,
@@ -52,37 +54,26 @@ module.exports = function saveUser({ user, source }) {
       source: userData.source,
     }).then(() => {
       if (! userData.zip) {
+        debug('no zip')
         resolve()
       }
 
       zipToLatLong(userData.zip).then((latLong) => {
         const firstname = userData.name.split(' ')[0]
-        const newPublicContact = firebasedb.ref(`publicInfo/${userData.campaign}`).push()
+        const newContactPublicKey = firebasedb.ref().child('contactsPublic').child(userData.campaign).push().key
 
         debug('sending to firebase:', firstname)
-        newPublicContact.set({
+        firebasedb.ref(`contactsPublic/${userData.campaign}/${newContactKey}`).set({
           name: firstname,
           zip: userData.zip,
-          lat: latLong.val().LAT,
-          long: latLong.val().LNG,
-        })
+          lat: latLong.LAT,
+          long: latLong.LNG,
+        }).then(resolve, reject)
       }, (that) => {
         // todo handle error
+        debug('error in zip lat long')
+        reject()
       })
-
-      // const firstname = userData.name.split(' ')[0]
-      // const newPublicContact = firebasedb.ref(`publicInfo/${userData.campaign}`).push()
-
-      // return firebasedb.ref(`publicInfo/zips/${userData.zip.toString()}`)
-      //   .once('value').then((snapshot) => {
-      //     debug('sending to firebase:', firstname)
-      //     newPublicContact.set({
-      //       name: firstname,
-      //       zip: userData.zip,
-      //       lat: snapshot.val().LAT,
-      //       long: snapshot.val().LNG,
-      //     })
-      //   })
     })
   })
 }

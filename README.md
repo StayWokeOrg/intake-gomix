@@ -8,7 +8,6 @@ In the middle of porting from https://github.com/staywokeorg/intake.
 Inspired by https://firebase-quickstart.gomix.me/, which we should refer to in the future for adding social auth.
 
 ### Todo before this integration is done
-- [ ] Fix Firebase contacts on map thing
 - [ ] Put it on a real subdomain
 
 ## Getting started
