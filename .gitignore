@@ -1,3 +1,4 @@
+*.log
 .subversion
 .bash_history
 .viminfo
