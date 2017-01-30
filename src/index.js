@@ -41,10 +41,11 @@ app.use(methodOverride('_method'))
 app.use(expressValidator())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.set('port', process.env.PORT)
 app.set('view engine', 'html')
 
 // We are actually using these:
+app.set('port', process.env.PORT)
+
 app.use(logger('combined'))
 
 app.use(cookieSession({
