@@ -52,6 +52,7 @@ module.exports = function saveUser({ user, source }) {
       topics: userData.topics,
       campaign: userData.campaign,
       source: userData.source,
+      created_at: new Date().toISOString(),
     }).then(() => {
       if (! userData.zip) {
         debug('no zip')
@@ -59,10 +60,14 @@ module.exports = function saveUser({ user, source }) {
       }
 
       zipToLatLong(userData.zip).then((latLong) => {
+        if (! latLong) resolve()
+          
         const firstname = userData.name.split(' ')[0]
         const newContactPublicKey = firebasedb.ref().child('contactsPublic').child(userData.campaign).push().key
 
         debug('sending to firebase:', firstname)
+        debug(latLong)
+
         firebasedb.ref(`contactsPublic/${userData.campaign}/${newContactKey}`).set({
           name: firstname,
           zip: userData.zip,
@@ -74,6 +79,9 @@ module.exports = function saveUser({ user, source }) {
         debug('error in zip lat long')
         reject()
       })
+    }, (reason) => {
+      debug('error', reason)
+      reject(reason)
     })
   })
 }
