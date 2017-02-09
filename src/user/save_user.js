@@ -67,6 +67,7 @@ module.exports = function saveUser({ user, source }) {
 
         debug('sending to firebase:', firstname)
         debug(latLong)
+
         firebasedb.ref(`contactsPublic/${userData.campaign}/${newContactKey}`).set({
           name: firstname,
           zip: userData.zip,
