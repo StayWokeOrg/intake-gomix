@@ -3,7 +3,7 @@ const expect = chai.expect // eslint-disable-line
 const should = chai.should() // eslint-disable-line
 const debug = require('debug')('test') // eslint-disable-line
 
-const encodeUser = require('../../user/encode_user')
+const encodeUser = require('../../src/user/encode_user')
 
 describe('user/encode_user:', () => {
   describe('#encodeUser()', () => {
@@ -28,17 +28,9 @@ describe('user/encode_user:', () => {
         user: makeUser(),
         source: 'web',
         campaign: 'campaign',
-        expected: { 'name': 'First Last', 'email': 'email@domain.com', 'phone': '1234567890', 'zip': '12345', 'campaign': 'campaign', 'source': 'web' },
+        expected: { 'name': 'First Last', 'email': 'email@domain.com', 'phone': '1234567890', 'zip': '12345', 'campaign': 'campaign', 'source': 'web', 'topics': [] },
         expectedDescription: 'object with all properties',
-      },
-      {
-        description: 'user with no phone',
-        user: makeUserWithout('phone'),
-        source: 'web',
-        campaign: 'campaign',
-        expected: { 'name': 'First Last', 'email': 'email@domain.com', 'zip': '12345', 'campaign': 'campaign', 'source': 'web' },
-        expectedDescription: 'object without empty phone property',
-      },
+      }
     ]
     examples.forEach((example) => {
       describe(`${example.description}`, () => {

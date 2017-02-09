@@ -44,7 +44,8 @@ const commands = {
 
     // no flow, or flow was invalid
     // tell them what commands they can send us
-    // const text = 'Sorry, didn’t quite get that. You can say ‘signup’ to join StayWoke, or ‘schedule’ for a list of upcoming events.'
+    // const text = 'Sorry, didn’t quite get that. You can say ‘signup’ to join StayWoke,'
+    //  + 'or ‘schedule’ for a list of upcoming events.'
     const text = 'Sorry, didn’t quite get that. You can say ‘signup’ to join StayWoke.'
     res.send(message(text))
   },
